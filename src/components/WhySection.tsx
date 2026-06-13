@@ -43,7 +43,7 @@ export default function WhySection() {
           subtitle="Kami ngerti kondisi UMKM — makanya semua layanan dirancang biar gampang, terjangkau, dan hasilnya bisa langsung dipakai."
         />
 
-        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {reasons.map(({ icon: Icon, color, title, desc }, i) => (
             <div
               key={title}

@@ -5,12 +5,12 @@ import { useReveal } from '../hooks/useReveal'
 import { IG_URL, IG_HANDLE, BRAND_NAME } from '../lib/site'
 
 const posts = [
-  { src: '/showcase/showcase-1.png', caption: `Before vs After — UMKM yang tampil online bareng ${BRAND_NAME}` },
-  { src: '/showcase/showcase-2.png', caption: 'Behind the scene — proses ngerjain proyek klien' },
-  { src: '/showcase/showcase-3.png', caption: 'Landing Page Basic — mulai Rp 350.000' },
-  { src: '/showcase/showcase-4.png', caption: 'Upgrade ke Toko Online — mulai Rp 1.000.000' },
-  { src: '/showcase/showcase-5.png', caption: 'Hasil nyata > 100 posting promo' },
-  { src: '/showcase/showcase-6.png', caption: 'Landing page ≠ toko online — jangan salah pilih' },
+  { src: '/showcase/showcase-1.png', caption: `Before & After — klien ${BRAND_NAME}` },
+  { src: '/showcase/showcase-2.png', caption: `Behind the scene — proses ngerjain ${BRAND_NAME}` },
+  { src: '/showcase/showcase-3.png', caption: 'Paket Landing Page Basic — mulai Rp 350.000' },
+  { src: '/showcase/showcase-4.png', caption: '5 tanda UMKM butuh toko online' },
+  { src: '/showcase/showcase-5.png', caption: `Kenalan ${BRAND_NAME} — solusi digital buat UMKM` },
+  { src: '/showcase/showcase-6.png', caption: `2 layanan ${BRAND_NAME}: landing page & toko online` },
 ]
 
 export default function ShowcaseSection() {
@@ -38,7 +38,7 @@ export default function ShowcaseSection() {
           </a>
         </div>
 
-        <div ref={ref} className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {posts.map((post, i) => (
             <a
               key={post.src}
