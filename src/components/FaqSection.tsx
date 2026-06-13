@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, MessageCircle } from 'lucide-react'
+import { WA_KONSULTASI } from '../lib/site'
 
 const faqs = [
   {
@@ -28,46 +29,65 @@ export default function FaqSection() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="py-20 bg-[#F8FAFC]">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#4338CA]/10 text-[#4338CA] text-sm font-medium">
+    <section id="faq" className="py-24 sm:py-28 bg-white">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center mb-12">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#4338CA]/10 text-[#4338CA] text-xs font-semibold tracking-wide uppercase">
             FAQ
           </span>
+          <h2 className="mt-5 text-3xl sm:text-4xl font-bold tracking-tight text-[#1E1B4B]">
+            Pertanyaan yang sering ditanya
+          </h2>
+          <p className="mt-4 text-base text-slate-600">
+            Masih ada pertanyaan lain? Hubungi kami langsung via WhatsApp.
+          </p>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E1B4B] mb-4">
-          Pertanyaan yang sering ditanya
-        </h2>
-        <p className="text-center text-[#1E1B4B]/60 mb-10">
-          Masih ada pertanyaan lain? Hubungi kami langsung via WhatsApp.
-        </p>
 
         <div className="space-y-3">
-          {faqs.map(({ q, a }, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl border border-gray-100 overflow-hidden"
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left cursor-pointer hover:bg-gray-50 transition-colors duration-200"
-                aria-expanded={open === i}
+          {faqs.map(({ q, a }, i) => {
+            const isOpen = open === i
+            return (
+              <div
+                key={i}
+                className={`bg-white rounded-2xl border overflow-hidden transition-colors duration-300 ${
+                  isOpen ? 'border-[#4338CA]/30 shadow-md' : 'border-slate-200'
+                }`}
               >
-                <span className="text-sm font-semibold text-[#1E1B4B] pr-4">{q}</span>
-                <ChevronDown
-                  size={18}
-                  className={`flex-shrink-0 text-[#4338CA] transition-transform duration-200 ${
-                    open === i ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-              {open === i && (
-                <div className="px-5 pb-4 text-sm text-[#1E1B4B]/65 leading-relaxed border-t border-gray-50">
-                  <div className="pt-3">{a}</div>
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer hover:bg-slate-50/60 transition-colors duration-200"
+                  aria-expanded={isOpen}
+                >
+                  <span className="text-[15px] font-semibold text-[#1E1B4B]">{q}</span>
+                  <span
+                    className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      isOpen ? 'bg-[#4338CA] text-white rotate-180' : 'bg-slate-100 text-[#4338CA]'
+                    }`}
+                  >
+                    <ChevronDown size={16} />
+                  </span>
+                </button>
+                <div className={`acc-grid ${isOpen ? 'open' : ''}`}>
+                  <div className="acc-inner">
+                    <p className="px-6 pb-5 text-[15px] text-slate-600 leading-relaxed">{a}</p>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Inline CTA */}
+        <div className="mt-10 text-center">
+          <a
+            href={WA_KONSULTASI}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 bg-white text-[#1E1B4B] text-sm font-semibold hover:border-[#4338CA] hover:text-[#4338CA] transition-colors duration-200 cursor-pointer"
+          >
+            <MessageCircle size={16} />
+            Tanya langsung via WhatsApp
+          </a>
         </div>
       </div>
     </section>

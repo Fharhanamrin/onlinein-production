@@ -1,105 +1,139 @@
-import { ArrowRight, MessageCircle } from 'lucide-react'
+import { ArrowRight, MessageCircle, Star } from 'lucide-react'
+import { WA_KONSULTASI, IG_HANDLE } from '../lib/site'
+
+const stats = [
+  { value: '7–14', unit: 'hari', label: 'Proses cepat' },
+  { value: '350rb', unit: 'mulai', label: 'Harga jujur' },
+  { value: '100%', unit: '', label: 'Mobile-friendly' },
+]
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-white">
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
       {/* Background decoration */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      >
-        {/* Grid pattern */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Soft grid */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,#000_40%,transparent_100%)]"
           style={{
             backgroundImage: `linear-gradient(#4338CA 1px, transparent 1px), linear-gradient(to right, #4338CA 1px, transparent 1px)`,
-            backgroundSize: '48px 48px',
+            backgroundSize: '56px 56px',
           }}
         />
-        {/* Gradient blobs */}
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-[#4338CA]/10 blur-3xl" />
-        <div className="absolute top-1/2 -left-32 w-80 h-80 rounded-full bg-[#06B6D4]/10 blur-3xl" />
+        {/* Gradient blobs — lebih terlihat */}
+        <div className="absolute -top-24 -right-20 w-[28rem] h-[28rem] rounded-full bg-[#4338CA]/15 blur-[100px]" />
+        <div className="absolute top-1/3 -left-24 w-96 h-96 rounded-full bg-[#06B6D4]/15 blur-[100px]" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
         <div className="text-center max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#4338CA]/8 border border-[#4338CA]/20 text-[#4338CA] text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
-            Jasa Digital untuk UMKM Indonesia
+          <div className="animate-fade-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-medium mb-7">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#06B6D4] opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#06B6D4]" />
+            </span>
+            Solusi digital untuk UMKM Indonesia
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-[#1E1B4B] mb-6">
+          <h1
+            className="animate-fade-up text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#1E1B4B] mb-6"
+            style={{ animationDelay: '0.08s' }}
+          >
             Onlinein{' '}
             <span
-              className="inline-block"
               style={{
-                background: 'linear-gradient(135deg, #4338CA 0%, #06B6D4 100%)',
+                background: 'linear-gradient(120deg, #4338CA 0%, #06B6D4 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}
             >
-              Usahamu
+              usahamu
             </span>
             <br />
-            Tampil &amp; Jualan Online
+            tampil &amp; jualan online
           </h1>
 
           {/* Sub-headline */}
-          <p className="text-lg sm:text-xl text-[#1E1B4B]/60 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Buat <strong className="text-[#1E1B4B]/80 font-semibold">landing page profesional</strong> dan{' '}
-            <strong className="text-[#1E1B4B]/80 font-semibold">toko online</strong> untuk usahamu —
-            cepat, terjangkau, dan tanpa istilah teknis yang bikin pusing.
+          <p
+            className="animate-fade-up text-lg sm:text-xl text-slate-600 leading-relaxed mb-9 max-w-xl mx-auto"
+            style={{ animationDelay: '0.16s' }}
+          >
+            Bikin <strong className="text-[#1E1B4B] font-semibold">landing page profesional</strong> &amp;{' '}
+            <strong className="text-[#1E1B4B] font-semibold">toko online</strong> buat usahamu —
+            rapi, terjangkau, dan tanpa istilah teknis yang bikin pusing.
           </p>
 
-          {/* Stats row */}
-          <div className="flex flex-wrap justify-center gap-6 mb-10">
-            {[
-              { value: '≤ 14 Hari', label: 'Waktu Pengerjaan' },
-              { value: 'Mulai 350rb', label: 'Harga Terjangkau' },
-              { value: '100%', label: 'Mobile-Friendly' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-2xl font-bold text-[#4338CA]">{stat.value}</div>
-                <div className="text-sm text-[#1E1B4B]/50">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div
+            className="animate-fade-up flex flex-col sm:flex-row gap-3 justify-center mb-10"
+            style={{ animationDelay: '0.24s' }}
+          >
             <a
-              href="https://wa.me/6281234567890?text=Halo%20Onlinein%2C%20saya%20mau%20konsultasi%20gratis"
+              href={WA_KONSULTASI}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#4338CA] text-white font-semibold text-base hover:bg-[#3730A3] transition-all duration-200 shadow-lg shadow-[#4338CA]/25 hover:shadow-[#4338CA]/40 hover:-translate-y-0.5 cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#4338CA] text-white font-semibold text-base hover:bg-[#3730A3] transition-all duration-200 shadow-lg shadow-[#4338CA]/25 hover:shadow-xl hover:shadow-[#4338CA]/30 hover:-translate-y-0.5 cursor-pointer"
             >
               <MessageCircle size={20} />
-              Konsultasi Gratis via WhatsApp
+              Konsultasi Gratis
             </a>
             <a
               href="#harga"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border-2 border-[#4338CA] text-[#4338CA] font-semibold text-base hover:bg-[#4338CA]/5 transition-all duration-200 cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-slate-300 bg-white text-[#1E1B4B] font-semibold text-base hover:border-[#4338CA] hover:text-[#4338CA] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
             >
               Lihat Paket Harga
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </a>
+          </div>
+
+          {/* Stats row — dengan divider */}
+          <div
+            className="animate-fade-up inline-flex items-center gap-6 sm:gap-10 px-6 py-4 rounded-2xl bg-white/70 backdrop-blur border border-slate-100 shadow-sm"
+            style={{ animationDelay: '0.32s' }}
+          >
+            {stats.map((stat, i) => (
+              <div key={stat.label} className="flex items-center gap-6 sm:gap-10">
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-[#1E1B4B]">
+                    {stat.value}
+                    {stat.unit && <span className="text-sm font-medium text-slate-400 ml-1">{stat.unit}</span>}
+                  </div>
+                  <div className="text-xs sm:text-sm text-slate-500 mt-0.5">{stat.label}</div>
+                </div>
+                {i < stats.length - 1 && <div className="h-9 w-px bg-slate-200" />}
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Hero visual — sosmed launch preview */}
-        <div className="mt-16 max-w-sm mx-auto sm:max-w-md">
-          <div className="rounded-2xl shadow-2xl overflow-hidden ring-1 ring-gray-200">
-            <img
-              src="/logos/onlinein-launch-feed-1080.png"
-              alt="Preview konten sosial media Onlinein"
-              className="w-full h-auto block"
-            />
+        <div
+          className="animate-fade-up mt-16 max-w-sm mx-auto sm:max-w-md"
+          style={{ animationDelay: '0.4s' }}
+        >
+          <div className="relative">
+            {/* Floating rating chip */}
+            <div className="absolute -top-4 -left-4 z-10 hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-white shadow-lg border border-slate-100">
+              <div className="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={12} className="text-amber-400" fill="currentColor" />
+                ))}
+              </div>
+              <span className="text-xs font-semibold text-[#1E1B4B]">UMKM puas</span>
+            </div>
+            <div className="rounded-3xl shadow-2xl overflow-hidden ring-1 ring-slate-200/70">
+              <img
+                src="/logos/onlinein-launch-feed-1080.png"
+                alt="Preview konten sosial media Onlinein"
+                className="w-full h-auto block"
+              />
+            </div>
           </div>
-          <p className="text-center text-sm text-[#1E1B4B]/40 mt-3">
-            Follow kami di Instagram &amp; TikTok — @onlinein.id
+          <p className="text-center text-sm text-slate-400 mt-4">
+            Aktif berbagi tiap hari di Instagram &amp; TikTok — @{IG_HANDLE}
           </p>
         </div>
       </div>

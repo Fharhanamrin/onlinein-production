@@ -1,4 +1,6 @@
 import { Star, Quote } from 'lucide-react'
+import SectionHeading from './SectionHeading'
+import { useReveal } from '../hooks/useReveal'
 
 const testimonials = [
   {
@@ -34,48 +36,46 @@ function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-0.5" aria-label={`Rating ${count} dari 5`}>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={14} className="text-yellow-400" fill="currentColor" />
+        <Star key={i} size={16} className="text-amber-400" fill="currentColor" />
       ))}
     </div>
   )
 }
 
 export default function TestimoniSection() {
-  return (
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm font-medium">
-            Testimoni Klien
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E1B4B] mb-4">
-          UMKM yang sudah naik kelas
-        </h2>
-        <p className="text-center text-[#1E1B4B]/60 max-w-xl mx-auto mb-12">
-          Ini cerita dari klien kami — usaha kecil yang kini tampil profesional dan bisa jualan online.
-        </p>
+  const { ref, visible } = useReveal<HTMLDivElement>()
 
-        <div className="grid sm:grid-cols-3 gap-6">
-          {testimonials.map(({ name, business, location, rating, text, initials, color }) => (
+  return (
+    <section className="py-24 sm:py-28 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          tone="amber"
+          eyebrow="Testimoni klien"
+          title="UMKM yang sudah naik kelas"
+          subtitle="Satu testimoni jujur lebih kuat dari 100 posting promo. Ini cerita dari usaha kecil yang kini tampil profesional & bisa jualan online."
+        />
+
+        <div ref={ref} className="grid sm:grid-cols-3 gap-6">
+          {testimonials.map(({ name, business, location, rating, text, initials, color }, i) => (
             <div
               key={name}
-              className="bg-[#F8FAFC] rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col"
+              className={`reveal ${visible ? 'is-visible' : ''} group relative bg-white rounded-3xl p-7 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col`}
+              style={{ transitionDelay: visible ? `${i * 100}ms` : '0ms' }}
             >
-              <Quote size={24} style={{ color, opacity: 0.3 }} className="mb-4" />
-              <p className="text-sm text-[#1E1B4B]/70 leading-relaxed flex-1 mb-5">
-                "{text}"
+              <Quote size={36} style={{ color }} className="mb-4 opacity-90" fill="currentColor" />
+              <p className="text-[15px] text-slate-700 leading-relaxed flex-1 mb-6">
+                {text}
               </p>
-              <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
+              <div className="flex items-center gap-3 border-t border-slate-100 pt-5">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
+                  className="w-11 h-11 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
                   style={{ backgroundColor: color }}
                 >
                   {initials}
                 </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-semibold text-[#1E1B4B] truncate">{name}</div>
-                  <div className="text-xs text-[#1E1B4B]/50 truncate">{business} · {location}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-bold text-[#1E1B4B] truncate">{name}</div>
+                  <div className="text-xs text-slate-500 truncate mb-1">{business} · {location}</div>
                   <StarRating count={rating} />
                 </div>
               </div>
@@ -84,16 +84,16 @@ export default function TestimoniSection() {
         </div>
 
         {/* Trust stats */}
-        <div className="mt-14 rounded-2xl bg-gradient-to-r from-[#4338CA] to-[#06B6D4] p-8">
-          <div className="grid sm:grid-cols-3 gap-8 text-center text-white">
+        <div className="mt-16 rounded-3xl bg-gradient-to-r from-[#1E1B4B] via-[#4338CA] to-[#06B6D4] p-10 shadow-xl shadow-[#4338CA]/20">
+          <div className="grid sm:grid-cols-3 gap-8 text-center text-white divide-y sm:divide-y-0 sm:divide-x divide-white/15">
             {[
               { value: '50+', label: 'Proyek Selesai' },
               { value: '100%', label: 'Klien Puas' },
-              { value: '≤14 Hari', label: 'Rata-rata Pengerjaan' },
+              { value: '7–14 hari', label: 'Rata-rata Pengerjaan' },
             ].map((s) => (
-              <div key={s.label}>
-                <div className="text-3xl font-bold mb-1">{s.value}</div>
-                <div className="text-sm text-white/75">{s.label}</div>
+              <div key={s.label} className="pt-6 first:pt-0 sm:pt-0">
+                <div className="text-4xl font-extrabold mb-1 tracking-tight">{s.value}</div>
+                <div className="text-sm text-white/70">{s.label}</div>
               </div>
             ))}
           </div>

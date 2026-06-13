@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { Check, MessageCircle, Star } from 'lucide-react'
+import SectionHeading from './SectionHeading'
+import { useReveal } from '../hooks/useReveal'
+import { waLink } from '../lib/site'
 
 type Tab = 'landing' | 'toko'
 
@@ -103,56 +106,59 @@ function PricingCard({
 }) {
   return (
     <div
-      className={`relative rounded-2xl border flex flex-col transition-all duration-300 hover:shadow-xl ${
+      className={`relative rounded-3xl border flex flex-col transition-all duration-300 ${
         plan.popular
-          ? 'border-[#4338CA] shadow-lg shadow-[#4338CA]/10'
-          : 'border-gray-200 bg-white'
+          ? 'border-[#4338CA]/30 shadow-xl shadow-[#4338CA]/10 bg-white lg:scale-[1.04] z-10'
+          : 'border-slate-200 bg-white hover:shadow-lg hover:-translate-y-1'
       }`}
     >
       {plan.popular && (
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-          <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#4338CA] text-white text-xs font-semibold">
+          <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#4338CA] text-white text-xs font-semibold shadow-md shadow-[#4338CA]/30">
             <Star size={11} fill="white" />
             Paling Populer
           </div>
         </div>
       )}
 
-      <div className={`p-6 ${plan.popular ? 'bg-[#4338CA]/3' : ''} rounded-t-2xl`}>
+      <div className={`p-7 ${plan.popular ? 'bg-gradient-to-b from-[#4338CA]/5 to-transparent' : ''} rounded-t-3xl`}>
         <h3 className="text-lg font-bold text-[#1E1B4B] mb-1">{plan.name}</h3>
-        <p className="text-sm text-[#1E1B4B]/55 mb-3">{plan.desc}</p>
-        <div
-          className="text-2xl font-bold"
-          style={{ color: accentColor }}
-        >
+        <p className="text-sm text-slate-500 mb-4 leading-relaxed">{plan.desc}</p>
+        <div className="text-[1.7rem] font-extrabold tracking-tight" style={{ color: accentColor }}>
           {plan.price}
         </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <ul className="space-y-3 flex-1">
+      <div className="px-7 pb-7 flex flex-col flex-1">
+        <div className="h-px bg-slate-100 mb-5" />
+        <ul className="space-y-3.5 flex-1">
           {plan.features.map((f) => (
             <li key={f} className="flex items-start gap-2.5">
               <div
                 className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                style={{ backgroundColor: `${accentColor}15` }}
+                style={{ backgroundColor: `${accentColor}1a` }}
               >
-                <Check size={11} style={{ color: accentColor }} strokeWidth={2.5} />
+                <Check size={12} style={{ color: accentColor }} strokeWidth={3} />
               </div>
-              <span className="text-sm text-[#1E1B4B]/70">{f}</span>
+              <span className="text-[15px] text-slate-700">{f}</span>
             </li>
           ))}
         </ul>
 
         <a
-          href={`https://wa.me/6281234567890?text=Halo%20Onlinein%2C%20saya%20tertarik%20paket%20${encodeURIComponent(plan.name)}`}
+          href={waLink(`Halo Onlinein, saya tertarik paket ${plan.name}`)}
           target="_blank"
           rel="noopener noreferrer"
-          className={`mt-6 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
+          className={`mt-7 inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
             plan.popular
-              ? 'bg-[#4338CA] text-white hover:bg-[#3730A3] shadow-md shadow-[#4338CA]/25'
-              : 'border-2 border-gray-200 text-[#1E1B4B] hover:border-[#4338CA] hover:text-[#4338CA]'
+              ? 'text-white hover:opacity-90 shadow-md'
+              : 'border border-slate-200 text-[#1E1B4B] hover:border-current'
           }`}
+          style={
+            plan.popular
+              ? { backgroundColor: accentColor, boxShadow: `0 8px 20px -8px ${accentColor}80` }
+              : { color: accentColor }
+          }
         >
           <MessageCircle size={16} />
           Pesan via WhatsApp
@@ -164,44 +170,39 @@ function PricingCard({
 
 export default function PricingSection() {
   const [tab, setTab] = useState<Tab>('landing')
+  const { ref, visible } = useReveal<HTMLDivElement>()
 
   const plans = tab === 'landing' ? landingPricing : tokoPricing
   const accentColor = tab === 'landing' ? '#4338CA' : '#06B6D4'
 
   return (
-    <section id="harga" className="py-20 bg-[#F8FAFC]">
+    <section id="harga" className="py-24 sm:py-28 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#4338CA]/10 text-[#4338CA] text-sm font-medium">
-            Harga Transparan
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E1B4B] mb-4">
-          Mulai dari ratusan ribu saja
-        </h2>
-        <p className="text-center text-[#1E1B4B]/60 max-w-xl mx-auto mb-10">
-          Harga terjangkau, hasil profesional. Pilih paket yang sesuai kebutuhan usahamu.
-        </p>
+        <SectionHeading
+          eyebrow="Harga jujur & transparan"
+          title="Mulai dari ratusan ribu saja"
+          subtitle="Nggak harus mahal buat tampil profesional. Pilih paket yang pas sama kebutuhan usahamu."
+        />
 
         {/* Tab selector */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex p-1 rounded-xl bg-white border border-gray-200 shadow-sm">
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex p-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
             <button
               onClick={() => setTab('landing')}
-              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 tab === 'landing'
-                  ? 'bg-[#4338CA] text-white shadow-sm'
-                  : 'text-[#1E1B4B]/60 hover:text-[#4338CA]'
+                  ? 'bg-[#4338CA] text-white shadow-md shadow-[#4338CA]/25'
+                  : 'text-slate-500 hover:text-[#4338CA]'
               }`}
             >
               Landing Page
             </button>
             <button
               onClick={() => setTab('toko')}
-              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 tab === 'toko'
-                  ? 'bg-[#06B6D4] text-white shadow-sm'
-                  : 'text-[#1E1B4B]/60 hover:text-[#06B6D4]'
+                  ? 'bg-[#06B6D4] text-white shadow-md shadow-[#06B6D4]/25'
+                  : 'text-slate-500 hover:text-[#0891B2]'
               }`}
             >
               Toko Online
@@ -210,32 +211,32 @@ export default function PricingSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-3 gap-6 items-start">
+        <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''} grid sm:grid-cols-3 gap-6 items-center`}>
           {plans.map((plan) => (
             <PricingCard key={plan.name} plan={plan} accentColor={accentColor} />
           ))}
         </div>
 
         {/* Add-ons */}
-        <div className="mt-14">
+        <div className="mt-16">
           <h3 className="text-lg font-bold text-[#1E1B4B] text-center mb-6">
-            Add-On (Layanan Tambahan)
+            Add-On — Layanan Tambahan
           </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
             {addOns.map(({ label, price }) => (
               <div
                 key={label}
-                className="bg-white rounded-xl px-5 py-4 border border-gray-100 flex items-center justify-between shadow-sm"
+                className="bg-white rounded-2xl px-5 py-4 border border-slate-100 flex items-center justify-between gap-3 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
-                <span className="text-sm text-[#1E1B4B]/70">{label}</span>
-                <span className="text-sm font-semibold text-[#4338CA] ml-4 text-right">{price}</span>
+                <span className="text-sm text-slate-700">{label}</span>
+                <span className="text-sm font-bold text-[#4338CA] whitespace-nowrap">{price}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="text-center text-xs text-[#1E1B4B]/40 mt-6">
-          * Harga dapat berubah sewaktu-waktu. Konsultasi gratis untuk penawaran terbaik.
+        <p className="text-center text-sm text-slate-400 mt-8">
+          * Harga dapat berubah sewaktu-waktu. Konsultasi gratis dulu untuk penawaran terbaik.
         </p>
       </div>
     </section>

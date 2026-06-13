@@ -1,11 +1,13 @@
 import { MessageCircle, Lightbulb, Code2, Rocket } from 'lucide-react'
+import SectionHeading from './SectionHeading'
+import { useReveal } from '../hooks/useReveal'
 
 const steps = [
   {
     icon: MessageCircle,
     step: '01',
     title: 'DM / Hubungi Kami',
-    desc: 'Hubungi Onlinein via WhatsApp atau DM Instagram @onlinein.id. Ceritakan kebutuhan usahamu.',
+    desc: 'Hubungi Onlinein via WhatsApp atau DM Instagram @onlinein_. Ceritakan kebutuhan usahamu.',
   },
   {
     icon: Lightbulb,
@@ -28,52 +30,48 @@ const steps = [
 ]
 
 export default function HowItWorksSection() {
-  return (
-    <section id="cara-kerja" className="py-20 bg-[#F8FAFC]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#4338CA]/10 text-[#4338CA] text-sm font-medium">
-            Cara Kerja
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E1B4B] mb-4">
-          Gampang banget, 4 langkah saja
-        </h2>
-        <p className="text-center text-[#1E1B4B]/60 max-w-xl mx-auto mb-14">
-          Prosesnya simpel dan transparan — kamu selalu tahu apa yang sedang dikerjakan.
-        </p>
+  const { ref, visible } = useReveal<HTMLDivElement>()
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+  return (
+    <section id="cara-kerja" className="py-24 sm:py-28 bg-[#F8FAFC]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Cara kerja"
+          title="Gampang banget, cuma 4 langkah"
+          subtitle="Prosesnya simpel & transparan — kamu selalu tahu apa yang sedang dikerjakan. Beres dalam 7–14 hari."
+        />
+
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
           {/* Connector line - desktop only */}
           <div
-            className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-px"
+            className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 rounded-full"
             style={{
               background: 'linear-gradient(to right, #4338CA, #06B6D4)',
-              opacity: 0.2,
+              opacity: 0.25,
             }}
             aria-hidden="true"
           />
 
-          {steps.map(({ icon: Icon, step, title, desc }) => (
-            <div key={step} className="relative text-center">
+          {steps.map(({ icon: Icon, step, title, desc }, i) => (
+            <div
+              key={step}
+              className={`reveal ${visible ? 'is-visible' : ''} relative text-center`}
+              style={{ transitionDelay: visible ? `${i * 120}ms` : '0ms' }}
+            >
               {/* Step circle */}
-              <div className="relative inline-flex mb-5">
+              <div className="relative inline-flex mb-6">
                 <div
-                  className="w-20 h-20 rounded-2xl flex items-center justify-center relative z-10"
-                  style={{
-                    background: 'linear-gradient(135deg, #4338CA 0%, #06B6D4 100%)',
-                  }}
+                  className="w-20 h-20 rounded-3xl flex items-center justify-center relative z-10 shadow-lg shadow-[#4338CA]/20"
+                  style={{ background: 'linear-gradient(135deg, #4338CA 0%, #06B6D4 100%)' }}
                 >
                   <Icon size={30} className="text-white" />
                 </div>
-                <div
-                  className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white border-2 border-[#4338CA] flex items-center justify-center"
-                >
-                  <span className="text-[10px] font-bold text-[#4338CA]">{step}</span>
+                <div className="absolute -top-2.5 -right-2.5 w-8 h-8 rounded-full bg-white border-2 border-[#4338CA] flex items-center justify-center shadow-sm z-20">
+                  <span className="text-xs font-extrabold text-[#4338CA]">{step}</span>
                 </div>
               </div>
-              <h3 className="text-base font-bold text-[#1E1B4B] mb-2">{title}</h3>
-              <p className="text-sm text-[#1E1B4B]/60 leading-relaxed">{desc}</p>
+              <h3 className="text-lg font-bold text-[#1E1B4B] mb-2">{title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>

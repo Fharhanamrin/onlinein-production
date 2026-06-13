@@ -1,4 +1,6 @@
 import { Zap, Wallet, Award, MessageCircleHeart } from 'lucide-react'
+import SectionHeading from './SectionHeading'
+import { useReveal } from '../hooks/useReveal'
 
 const reasons = [
   {
@@ -23,40 +25,42 @@ const reasons = [
     icon: MessageCircleHeart,
     color: '#06B6D4',
     title: 'Bebas Istilah Teknis',
-    desc: 'Kami bicara dengan bahasa yang mudah dipahami. Nggak ada jargon teknis yang bikin pusing.',
+    desc: 'Kami ngomong pakai bahasa yang gampang dipahami. Nggak ada jargon teknis yang bikin pusing.',
   },
 ]
 
 export default function WhySection() {
-  return (
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#06B6D4]/10 text-[#06B6D4] text-sm font-medium">
-            Kenapa Onlinein?
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#1E1B4B] mb-4">
-          Dibuat khusus untuk UMKM kecil
-        </h2>
-        <p className="text-center text-[#1E1B4B]/60 max-w-xl mx-auto mb-12">
-          Kami ngerti kondisi UMKM — makanya semua layanan kami dirancang biar gampang, terjangkau, dan hasilnya bisa langsung dipakai.
-        </p>
+  const { ref, visible } = useReveal<HTMLDivElement>()
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map(({ icon: Icon, color, title, desc }) => (
+  return (
+    <section className="py-24 sm:py-28 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          tone="cyan"
+          eyebrow="Kenapa Onlinein?"
+          title="Dibuat khusus untuk UMKM kecil"
+          subtitle="Kami ngerti kondisi UMKM — makanya semua layanan dirancang biar gampang, terjangkau, dan hasilnya bisa langsung dipakai."
+        />
+
+        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          {reasons.map(({ icon: Icon, color, title, desc }, i) => (
             <div
               key={title}
-              className="text-center p-6 rounded-2xl border border-gray-100 hover:border-[#4338CA]/20 hover:shadow-md transition-all duration-300 group"
+              className={`reveal ${visible ? 'is-visible' : ''} group text-center p-7 rounded-2xl border border-slate-100 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
+              style={{ transitionDelay: visible ? `${i * 80}ms` : '0ms' }}
             >
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
-                style={{ backgroundColor: `${color}12` }}
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110"
+                style={{ backgroundColor: `${color}14` }}
               >
-                <Icon size={26} style={{ color }} />
+                <Icon
+                  size={26}
+                  style={{ color }}
+                  className="transition-transform duration-300"
+                />
               </div>
               <h3 className="text-base font-bold text-[#1E1B4B] mb-2">{title}</h3>
-              <p className="text-sm text-[#1E1B4B]/60 leading-relaxed">{desc}</p>
+              <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
