@@ -26,7 +26,7 @@ export default function CtaSection() {
 
           <div className="relative px-8 py-16 sm:px-14 sm:py-20 text-center">
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-5">
-              Siap Onlinein usahamu?
+              Siap tampil online?
             </h2>
             <p className="text-white/80 text-lg max-w-xl mx-auto mb-9 leading-relaxed">
               Mulai dengan konsultasi gratis — ceritakan usahamu, dan kami bantu tentukan solusi terbaik. Tanpa syarat, tanpa biaya.

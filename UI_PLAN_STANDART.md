@@ -1,6 +1,6 @@
-# 🎨 UI Standard — Landing Page Onlinein
+# 🎨 UI Standard — Landing Page Tampilo
 
-> Dokumen acuan standar & aturan UI yang dipakai di landing page Onlinein.
+> Dokumen acuan standar & aturan UI yang dipakai di landing page Tampilo.
 > **Wajib dibaca sebelum menambah section / fitur baru** — biar konsisten, profesional, dan nggak menebak-nebak.
 >
 > Sumber kebenaran token: [`src/index.css`](src/index.css) · Brand: [`design-system/MASTER.md`](design-system/MASTER.md) · Voice: [`../konten-sosmed/README.md`](../konten-sosmed/README.md)
@@ -116,7 +116,7 @@ const { ref, visible } = useReveal<HTMLDivElement>()
 **Satu-satunya sumber** nomor WA / handle sosmed. **JANGAN hardcode `wa.me/...` di komponen.**
 ```tsx
 import { waLink, WA_KONSULTASI, IG_URL, IG_HANDLE } from '../lib/site'
-href={waLink('Halo Onlinein, saya tertarik paket Standard')}
+href={waLink('Halo Tampilo, saya tertarik paket Standard')}
 ```
 
 ### `BrandIcons` — [`src/components/BrandIcons.tsx`](src/components/BrandIcons.tsx)

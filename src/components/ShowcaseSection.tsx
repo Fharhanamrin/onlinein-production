@@ -2,10 +2,10 @@ import { ArrowUpRight } from 'lucide-react'
 import { InstagramIcon } from './BrandIcons'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
-import { IG_URL, IG_HANDLE } from '../lib/site'
+import { IG_URL, IG_HANDLE, BRAND_NAME } from '../lib/site'
 
 const posts = [
-  { src: '/showcase/showcase-1.png', caption: 'Before vs After — UMKM yang digitalin bareng Onlinein' },
+  { src: '/showcase/showcase-1.png', caption: `Before vs After — UMKM yang tampil online bareng ${BRAND_NAME}` },
   { src: '/showcase/showcase-2.png', caption: 'Behind the scene — proses ngerjain proyek klien' },
   { src: '/showcase/showcase-3.png', caption: 'Landing Page Basic — mulai Rp 350.000' },
   { src: '/showcase/showcase-4.png', caption: 'Upgrade ke Toko Online — mulai Rp 1.000.000' },

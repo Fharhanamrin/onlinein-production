@@ -1,6 +1,7 @@
 import { Zap, Wallet, Award, MessageCircleHeart } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
+import { BRAND_NAME } from '../lib/site'
 
 const reasons = [
   {
@@ -37,7 +38,7 @@ export default function WhySection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tone="cyan"
-          eyebrow="Kenapa Onlinein?"
+          eyebrow={`Kenapa ${BRAND_NAME}?`}
           title="Dibuat khusus untuk UMKM kecil"
           subtitle="Kami ngerti kondisi UMKM — makanya semua layanan dirancang biar gampang, terjangkau, dan hasilnya bisa langsung dipakai."
         />

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Check, MessageCircle, Star } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
-import { waLink } from '../lib/site'
+import { waPaket } from '../lib/site'
 
 type Tab = 'landing' | 'toko'
 
@@ -146,7 +146,7 @@ function PricingCard({
         </ul>
 
         <a
-          href={waLink(`Halo Onlinein, saya tertarik paket ${plan.name}`)}
+          href={waPaket(plan.name)}
           target="_blank"
           rel="noopener noreferrer"
           className={`mt-7 inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${

@@ -1,6 +1,7 @@
 import { Star, Quote } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
+import { BRAND_NAME } from '../lib/site'
 
 const testimonials = [
   {
@@ -17,7 +18,7 @@ const testimonials = [
     business: 'Konveksi Kaos Custom',
     location: 'Bandung',
     rating: 5,
-    text: 'Tim Onlinein sabar banget ngelayanin saya yang buta teknologi. Harganya masuk akal, dan hasilnya kelihatan profesional. Udah dapat 3 klien baru minggu pertama website live!',
+    text: `Tim ${BRAND_NAME} sabar banget ngelayanin saya yang buta teknologi. Harganya masuk akal, dan hasilnya kelihatan profesional. Udah dapat 3 klien baru minggu pertama website live!`,
     initials: 'MR',
     color: '#06B6D4',
   },
@@ -26,7 +27,7 @@ const testimonials = [
     business: 'MUA Freelance',
     location: 'Jakarta',
     rating: 5,
-    text: 'Portfolio dan booking saya sekarang rapih di satu halaman. Klien tinggal klik, lihat hasil kerja, terus langsung WA. Jumlah inquiry naik drastis setelah pakai Onlinein!',
+    text: `Portfolio dan booking saya sekarang rapih di satu halaman. Klien tinggal klik, lihat hasil kerja, terus langsung WA. Jumlah inquiry naik drastis setelah pakai ${BRAND_NAME}!`,
     initials: 'KD',
     color: '#4338CA',
   },

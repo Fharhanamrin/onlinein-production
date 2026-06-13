@@ -1,6 +1,7 @@
 import { MessageSquareWarning, ShoppingBag, EyeOff } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
+import { BRAND_NAME } from '../lib/site'
 
 const problems = [
   {
@@ -53,7 +54,7 @@ export default function ProblemSection() {
         <div className="mt-12 text-center">
           <p className="text-slate-500 text-base">Kabar baiknya, ketiga masalah ini ada solusinya —</p>
           <p className="text-2xl font-bold text-[#4338CA] mt-1.5 tracking-tight">
-            dan Onlinein hadir untuk menjawabnya.
+            dan {BRAND_NAME} hadir untuk menjawabnya.
           </p>
         </div>
       </div>

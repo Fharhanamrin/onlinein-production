@@ -1,13 +1,14 @@
 import { MessageCircle, Lightbulb, Code2, Rocket } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
+import { BRAND_NAME, IG_HANDLE } from '../lib/site'
 
 const steps = [
   {
     icon: MessageCircle,
     step: '01',
     title: 'DM / Hubungi Kami',
-    desc: 'Hubungi Onlinein via WhatsApp atau DM Instagram @onlinein_. Ceritakan kebutuhan usahamu.',
+    desc: `Hubungi ${BRAND_NAME} via WhatsApp atau DM Instagram @${IG_HANDLE}. Ceritakan kebutuhan usahamu.`,
   },
   {
     icon: Lightbulb,

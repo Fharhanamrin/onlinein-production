@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle, Star } from 'lucide-react'
-import { WA_KONSULTASI, IG_HANDLE } from '../lib/site'
+import { WA_KONSULTASI, IG_HANDLE, BRAND_NAME, LOGO_LAUNCH } from '../lib/site'
 
 const stats = [
   { value: '7–14', unit: 'hari', label: 'Proses cepat' },
@@ -41,7 +41,7 @@ export default function HeroSection() {
             className="animate-fade-up text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#1E1B4B] mb-6"
             style={{ animationDelay: '0.08s' }}
           >
-            Onlinein{' '}
+            {BRAND_NAME}{' '}
             <span
               style={{
                 background: 'linear-gradient(120deg, #4338CA 0%, #06B6D4 100%)',
@@ -50,10 +50,10 @@ export default function HeroSection() {
                 backgroundClip: 'text',
               }}
             >
-              usahamu
+              tampil
             </span>
             <br />
-            tampil &amp; jualan online
+            online
           </h1>
 
           {/* Sub-headline */}
@@ -126,8 +126,8 @@ export default function HeroSection() {
             </div>
             <div className="rounded-3xl shadow-2xl overflow-hidden ring-1 ring-slate-200/70">
               <img
-                src="/logos/onlinein-launch-feed-1080.png"
-                alt="Preview konten sosial media Onlinein"
+                src={LOGO_LAUNCH}
+                alt={`Preview konten sosial media ${BRAND_NAME}`}
                 className="w-full h-auto block"
               />
             </div>

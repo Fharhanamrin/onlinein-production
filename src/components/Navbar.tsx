@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Menu, X, MessageCircle } from 'lucide-react'
-import { WA_KONSULTASI } from '../lib/site'
+import { BRAND_NAME, LOGO_MAIN, WA_KONSULTASI } from '../lib/site'
 
 const navLinks = [
   { label: 'Layanan', href: '#layanan' },
@@ -31,16 +31,10 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 py-3">
-          {/* Logo */}
           <a href="#" className="flex items-center cursor-pointer shrink-0">
-            <img
-              src="/logos/onlinein-01-utama-512.png"
-              alt="Onlinein"
-              className="h-9 w-auto"
-            />
+            <img src={LOGO_MAIN} alt={BRAND_NAME} className="h-9 w-auto" />
           </a>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-8" aria-label="Navigasi utama">
             {navLinks.map((link) => (
               <a
@@ -53,7 +47,6 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <a
             href={WA_KONSULTASI}
             target="_blank"
@@ -64,7 +57,6 @@ export default function Navbar() {
             Konsultasi Gratis
           </a>
 
-          {/* Mobile toggle */}
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden p-2 rounded-lg text-[#1E1B4B] hover:bg-slate-100 transition-colors duration-200 cursor-pointer"
@@ -75,7 +67,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
