@@ -29,6 +29,7 @@ const id: Resources = {
     closeMenu: 'Tutup menu',
     links: {
       services: 'Layanan',
+      dashboard: 'Dashboard',
       pricing: 'Harga',
       how: 'Cara Kerja',
       portfolio: 'Portofolio',
@@ -104,6 +105,22 @@ const id: Resources = {
         ],
         cta: 'Lihat Paket Toko Online',
       },
+    ],
+  },
+
+  dashboard: {
+    eyebrow: 'Content Dashboard',
+    title: 'Studio konten kamu, langsung di browser',
+    subtitle:
+      'Kenalan sama Tampilo Content Dashboard — edit postingan sosmed lewat form sederhana, lihat preview-nya update langsung, lalu export gambar & video siap posting. Tanpa aplikasi desain, tanpa terminal.',
+    badge: 'Demo langsung',
+    videoAria: 'Video demo Tampilo Content Dashboard',
+    features: [
+      'Edit judul & copy lewat form sederhana',
+      'Live preview update sambil kamu ngetik',
+      'Ganti layout Instagram & TikTok',
+      'Export PNG + MP4 siap upload',
+      'Semua dari browser — tanpa instal apa pun',
     ],
   },
 

@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import ProblemSection from './components/ProblemSection'
 import ServicesSection from './components/ServicesSection'
+import DashboardSection from './components/DashboardSection'
 import PricingSection from './components/PricingSection'
 import WhySection from './components/WhySection'
 import HowItWorksSection from './components/HowItWorksSection'
@@ -20,6 +21,7 @@ export default function App() {
         <HeroSection />
         <ProblemSection />
         <ServicesSection />
+        <DashboardSection />
         <PricingSection />
         <WhySection />
         <HowItWorksSection />

@@ -6,6 +6,7 @@ import LanguageTabs from './LanguageTabs'
 
 const navItems = [
   { key: 'services', href: '#layanan' },
+  { key: 'dashboard', href: '#dashboard' },
   { key: 'pricing', href: '#harga' },
   { key: 'how', href: '#cara-kerja' },
   { key: 'portfolio', href: '#portfolio' },

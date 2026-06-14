@@ -29,6 +29,7 @@ const en = {
     closeMenu: 'Close menu',
     links: {
       services: 'Services',
+      dashboard: 'Dashboard',
       pricing: 'Pricing',
       how: 'How It Works',
       portfolio: 'Portfolio',
@@ -104,6 +105,22 @@ const en = {
         ],
         cta: 'See Online Store Plans',
       },
+    ],
+  },
+
+  dashboard: {
+    eyebrow: 'Content Dashboard',
+    title: 'Your content studio, right in the browser',
+    subtitle:
+      'Meet the Tampilo Content Dashboard — edit your social posts in a simple form, watch the preview update live, then export images and videos ready to post. No design apps, no terminal.',
+    badge: 'Live demo',
+    videoAria: 'Tampilo Content Dashboard demo video',
+    features: [
+      'Edit titles & copy in a simple form',
+      'Live preview updates as you type',
+      'Switch between Instagram & TikTok layouts',
+      'Export PNG + MP4 ready to upload',
+      'All from your browser — nothing to install',
     ],
   },
 
