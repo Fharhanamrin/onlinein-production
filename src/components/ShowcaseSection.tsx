@@ -1,20 +1,23 @@
 import { ArrowUpRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { InstagramIcon } from './BrandIcons'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
-import { IG_URL, IG_HANDLE, BRAND_NAME } from '../lib/site'
+import { IG_URL, IG_HANDLE } from '../lib/site'
 
-const posts = [
-  { src: '/showcase/showcase-1.png', caption: `Before & After — klien ${BRAND_NAME}` },
-  { src: '/showcase/showcase-2.png', caption: `Behind the scene — proses ngerjain ${BRAND_NAME}` },
-  { src: '/showcase/showcase-3.png', caption: 'Paket Landing Page Basic — mulai Rp 350.000' },
-  { src: '/showcase/showcase-4.png', caption: '5 tanda UMKM butuh toko online' },
-  { src: '/showcase/showcase-5.png', caption: `Kenalan ${BRAND_NAME} — solusi digital buat UMKM` },
-  { src: '/showcase/showcase-6.png', caption: `2 layanan ${BRAND_NAME}: landing page & toko online` },
+const images = [
+  '/showcase/showcase-1.png',
+  '/showcase/showcase-2.png',
+  '/showcase/showcase-3.png',
+  '/showcase/showcase-4.png',
+  '/showcase/showcase-5.png',
+  '/showcase/showcase-6.png',
 ]
 
 export default function ShowcaseSection() {
+  const { t } = useTranslation()
   const { ref, visible } = useReveal<HTMLDivElement>()
+  const captions = t('showcase.posts', { returnObjects: true }) as string[]
 
   return (
     <section id="karya" className="py-24 sm:py-28 bg-[#F8FAFC]">
@@ -23,9 +26,9 @@ export default function ShowcaseSection() {
           <SectionHeading
             tone="indigo"
             align="left"
-            eyebrow="Karya & Konten"
-            title="Aktif berbagi tiap hari"
-            subtitle="Edukasi, tips, showcase, sampai behind the scene — kami konsisten hadir buat UMKM Indonesia."
+            eyebrow={t('showcase.eyebrow')}
+            title={t('showcase.title')}
+            subtitle={t('showcase.subtitle')}
           />
           <a
             href={IG_URL}
@@ -34,14 +37,14 @@ export default function ShowcaseSection() {
             className="hidden lg:inline-flex shrink-0 items-center gap-2 px-5 py-3 rounded-full bg-[#1E1B4B] text-white text-sm font-semibold hover:bg-[#4338CA] transition-colors duration-200 cursor-pointer mb-14"
           >
             <InstagramIcon size={18} />
-            Follow @{IG_HANDLE}
+            {t('showcase.follow', { handle: IG_HANDLE })}
           </a>
         </div>
 
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {posts.map((post, i) => (
+          {images.map((src, i) => (
             <a
-              key={post.src}
+              key={src}
               href={IG_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -49,15 +52,15 @@ export default function ShowcaseSection() {
               style={{ transitionDelay: visible ? `${i * 70}ms` : '0ms' }}
             >
               <img
-                src={post.src}
-                alt={post.caption}
+                src={src}
+                alt={captions[i]}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/85 via-[#1E1B4B]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-x-0 bottom-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <p className="text-white text-xs sm:text-sm font-medium leading-snug">{post.caption}</p>
+                <p className="text-white text-xs sm:text-sm font-medium leading-snug">{captions[i]}</p>
               </div>
               <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <ArrowUpRight size={16} className="text-[#1E1B4B]" />
@@ -75,7 +78,7 @@ export default function ShowcaseSection() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1E1B4B] text-white text-sm font-semibold hover:bg-[#4338CA] transition-colors duration-200 cursor-pointer"
           >
             <InstagramIcon size={18} />
-            Follow @{IG_HANDLE}
+            {t('showcase.follow', { handle: IG_HANDLE })}
           </a>
         </div>
       </div>

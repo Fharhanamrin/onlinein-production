@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react'
 import { Menu, X, MessageCircle } from 'lucide-react'
-import { BRAND_NAME, LOGO_MAIN, WA_KONSULTASI } from '../lib/site'
+import { useTranslation } from 'react-i18next'
+import { BRAND_NAME, LOGO_MAIN, waLink } from '../lib/site'
+import LanguageTabs from './LanguageTabs'
 
-const navLinks = [
-  { label: 'Layanan', href: '#layanan' },
-  { label: 'Harga', href: '#harga' },
-  { label: 'Cara Kerja', href: '#cara-kerja' },
-  { label: 'Portofolio', href: '#portfolio' },
-  { label: 'Karya', href: '#karya' },
-  { label: 'FAQ', href: '#faq' },
-]
+const navItems = [
+  { key: 'services', href: '#layanan' },
+  { key: 'pricing', href: '#harga' },
+  { key: 'how', href: '#cara-kerja' },
+  { key: 'portfolio', href: '#portfolio' },
+  { key: 'work', href: '#karya' },
+  { key: 'faq', href: '#faq' },
+] as const
 
 export default function Navbar() {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -20,6 +23,8 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const waConsult = waLink(t('wa.konsultasi'))
 
   return (
     <header
@@ -35,32 +40,35 @@ export default function Navbar() {
             <img src={LOGO_MAIN} alt={BRAND_NAME} className="h-9 w-auto" />
           </a>
 
-          <nav className="hidden md:flex items-center gap-5 lg:gap-8" aria-label="Navigasi utama">
-            {navLinks.map((link) => (
+          <nav className="hidden md:flex items-center gap-5 lg:gap-8" aria-label={t('nav.primary')}>
+            {navItems.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className="relative text-sm font-medium text-slate-600 hover:text-[#4338CA] transition-colors duration-200 cursor-pointer after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:bg-[#4338CA] after:transition-all after:duration-300 hover:after:w-full"
               >
-                {link.label}
+                {t(`nav.links.${link.key}`)}
               </a>
             ))}
           </nav>
 
-          <a
-            href={WA_KONSULTASI}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4338CA] text-white text-sm font-semibold hover:bg-[#3730A3] transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
-          >
-            <MessageCircle size={16} />
-            Konsultasi Gratis
-          </a>
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageTabs />
+            <a
+              href={waConsult}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4338CA] text-white text-sm font-semibold hover:bg-[#3730A3] transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
+            >
+              <MessageCircle size={16} />
+              {t('common.consultFree')}
+            </a>
+          </div>
 
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden p-2 rounded-lg text-[#1E1B4B] hover:bg-slate-100 transition-colors duration-200 cursor-pointer"
-            aria-label={open ? 'Tutup menu' : 'Buka menu'}
+            aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -74,24 +82,27 @@ export default function Navbar() {
       >
         <div className="bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-lg">
           <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
-            {navLinks.map((link) => (
+            {navItems.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="text-sm font-medium text-slate-700 hover:text-[#4338CA] hover:bg-slate-50 rounded-lg px-3 py-2.5 transition-colors duration-200 cursor-pointer"
               >
-                {link.label}
+                {t(`nav.links.${link.key}`)}
               </a>
             ))}
+            <div className="px-3 py-2.5">
+              <LanguageTabs />
+            </div>
             <a
-              href={WA_KONSULTASI}
+              href={waConsult}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-full bg-[#4338CA] text-white text-sm font-semibold hover:bg-[#3730A3] transition-colors duration-200 cursor-pointer"
+              className="mt-1 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-full bg-[#4338CA] text-white text-sm font-semibold hover:bg-[#3730A3] transition-colors duration-200 cursor-pointer"
             >
               <MessageCircle size={16} />
-              Konsultasi Gratis
+              {t('common.consultFree')}
             </a>
           </nav>
         </div>

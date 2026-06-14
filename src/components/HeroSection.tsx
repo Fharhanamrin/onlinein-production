@@ -1,13 +1,13 @@
 import { ArrowRight, MessageCircle, Star } from 'lucide-react'
-import { WA_KONSULTASI, IG_HANDLE, BRAND_NAME, LOGO_LAUNCH } from '../lib/site'
+import { Trans, useTranslation } from 'react-i18next'
+import { IG_HANDLE, BRAND_NAME, LOGO_LAUNCH, waLink } from '../lib/site'
 
-const stats = [
-  { value: '7–14', unit: 'hari', label: 'Proses cepat' },
-  { value: '350rb', unit: 'mulai', label: 'Harga jujur' },
-  { value: '100%', unit: '', label: 'Mobile-friendly' },
-]
+type Stat = { value: string; unit: string; label: string }
 
 export default function HeroSection() {
+  const { t } = useTranslation()
+  const stats = t('hero.stats', { returnObjects: true }) as Stat[]
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
       {/* Background decoration */}
@@ -33,7 +33,7 @@ export default function HeroSection() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#06B6D4] opacity-75 animate-ping" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#06B6D4]" />
             </span>
-            Solusi digital untuk UMKM Indonesia
+            {t('hero.badge')}
           </div>
 
           {/* Headline */}
@@ -41,7 +41,7 @@ export default function HeroSection() {
             className="animate-fade-up text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#1E1B4B] mb-6"
             style={{ animationDelay: '0.08s' }}
           >
-            {BRAND_NAME}{' '}
+            {t('hero.title.before')}{' '}
             <span
               style={{
                 background: 'linear-gradient(120deg, #4338CA 0%, #06B6D4 100%)',
@@ -50,10 +50,10 @@ export default function HeroSection() {
                 backgroundClip: 'text',
               }}
             >
-              tampil
+              {t('hero.title.highlight')}
             </span>
             <br />
-            online
+            {t('hero.title.after')}
           </h1>
 
           {/* Sub-headline */}
@@ -61,9 +61,10 @@ export default function HeroSection() {
             className="animate-fade-up text-lg sm:text-xl text-slate-600 leading-relaxed mb-9 max-w-xl mx-auto"
             style={{ animationDelay: '0.16s' }}
           >
-            Bikin <strong className="text-[#1E1B4B] font-semibold">landing page profesional</strong> &amp;{' '}
-            <strong className="text-[#1E1B4B] font-semibold">toko online</strong> buat usahamu —
-            rapi, terjangkau, dan tanpa istilah teknis yang bikin pusing.
+            <Trans
+              i18nKey="hero.subtitle"
+              components={{ strong: <strong className="text-[#1E1B4B] font-semibold" /> }}
+            />
           </p>
 
           {/* CTA buttons */}
@@ -72,19 +73,19 @@ export default function HeroSection() {
             style={{ animationDelay: '0.24s' }}
           >
             <a
-              href={WA_KONSULTASI}
+              href={waLink(t('wa.konsultasi'))}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#4338CA] text-white font-semibold text-base hover:bg-[#3730A3] transition-all duration-200 shadow-lg shadow-[#4338CA]/25 hover:shadow-xl hover:shadow-[#4338CA]/30 hover:-translate-y-0.5 cursor-pointer"
             >
               <MessageCircle size={20} />
-              Konsultasi Gratis
+              {t('common.consultFree')}
             </a>
             <a
               href="#harga"
               className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-slate-300 bg-white text-[#1E1B4B] font-semibold text-base hover:border-[#4338CA] hover:text-[#4338CA] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
             >
-              Lihat Paket Harga
+              {t('common.seePricing')}
               <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </a>
           </div>
@@ -122,18 +123,18 @@ export default function HeroSection() {
                   <Star key={i} size={12} className="text-amber-400" fill="currentColor" />
                 ))}
               </div>
-              <span className="text-xs font-semibold text-[#1E1B4B]">UMKM puas</span>
+              <span className="text-xs font-semibold text-[#1E1B4B]">{t('hero.ratingChip')}</span>
             </div>
             <div className="rounded-3xl shadow-2xl overflow-hidden ring-1 ring-slate-200/70">
               <img
                 src={LOGO_LAUNCH}
-                alt={`Preview konten sosial media ${BRAND_NAME}`}
+                alt={`${BRAND_NAME} — social media launch preview`}
                 className="w-full h-auto block"
               />
             </div>
           </div>
           <p className="text-center text-sm text-slate-400 mt-4">
-            Aktif berbagi tiap hari di Instagram &amp; TikTok — @{IG_HANDLE}
+            {t('hero.socialNote', { handle: IG_HANDLE })}
           </p>
         </div>
       </div>

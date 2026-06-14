@@ -1,4 +1,5 @@
 import { Music2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { InstagramIcon } from './BrandIcons'
 import {
   BRAND_NAME,
@@ -7,19 +8,21 @@ import {
   IG_URL,
   IG_HANDLE,
   TIKTOK_URL,
-  waTanya,
+  waLink,
 } from '../lib/site'
 
-const serviceLinks = [
-  { label: 'Landing Page', href: '#layanan' },
-  { label: 'Toko Online', href: '#layanan' },
-  { label: 'Paket Harga', href: '#harga' },
-  { label: 'Portofolio', href: '#portfolio' },
-  { label: 'Karya & Konten', href: '#karya' },
-  { label: 'FAQ', href: '#faq' },
-]
+const navLinks = [
+  { key: 'landing', href: '#layanan' },
+  { key: 'store', href: '#layanan' },
+  { key: 'pricing', href: '#harga' },
+  { key: 'portfolio', href: '#portfolio' },
+  { key: 'work', href: '#karya' },
+  { key: 'faq', href: '#faq' },
+] as const
 
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="bg-[#1E1B4B] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -29,15 +32,13 @@ export default function Footer() {
               <img src={LOGO_ICON} alt="" className="h-8 w-8 object-contain brightness-0 invert" />
               <span className="text-lg font-bold">{BRAND_NAME}</span>
             </div>
-            <p className="text-sm text-white/65 leading-relaxed max-w-xs">
-              Jasa digital untuk UMKM kecil — bantu tampil profesional dan jualan online, cepat, terjangkau, dan tanpa ribet.
-            </p>
+            <p className="text-sm text-white/65 leading-relaxed max-w-xs">{t('footer.tagline')}</p>
             <div className="flex items-center gap-3 mt-5">
               <a
                 href={IG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Instagram ${BRAND_NAME}`}
+                aria-label={t('footer.igAria')}
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 cursor-pointer"
               >
                 <InstagramIcon size={17} />
@@ -46,7 +47,7 @@ export default function Footer() {
                 href={TIKTOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`TikTok ${BRAND_NAME}`}
+                aria-label={t('footer.tiktokAria')}
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 cursor-pointer"
               >
                 <Music2 size={17} />
@@ -55,15 +56,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-sm mb-4 text-white">Navigasi</h4>
+            <h4 className="font-semibold text-sm mb-4 text-white">{t('footer.navTitle')}</h4>
             <ul className="space-y-2.5">
-              {serviceLinks.map(({ label, href }) => (
-                <li key={label}>
+              {navLinks.map(({ key, href }) => (
+                <li key={key}>
                   <a
                     href={href}
                     className="text-sm text-white/65 hover:text-white transition-colors duration-200 cursor-pointer"
                   >
-                    {label}
+                    {t(`footer.links.${key}`)}
                   </a>
                 </li>
               ))}
@@ -71,10 +72,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-sm mb-4 text-white">Hubungi Kami</h4>
+            <h4 className="font-semibold text-sm mb-4 text-white">{t('footer.contactTitle')}</h4>
             <div className="space-y-3">
               <a
-                href={waTanya()}
+                href={waLink(t('wa.tanya'))}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 text-sm text-white/65 hover:text-white transition-colors duration-200 cursor-pointer"
@@ -99,11 +100,9 @@ export default function Footer() {
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} {BRAND_NAME}. Dibuat dengan semangat untuk UMKM Indonesia.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
-          <p className="text-xs text-white/40">
-            Fharhan · Yana · Tfan — UAP Kewirausahaan
-          </p>
+          <p className="text-xs text-white/40">{t('footer.credits')}</p>
         </div>
       </div>
     </footer>

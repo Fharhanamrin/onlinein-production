@@ -11,17 +11,9 @@ export const LOGO_ICON = '/logos/tampilo-02-ikon-512.png'
 export const LOGO_MAIN = '/logos/tampilo-01-utama-512.png'
 export const LOGO_LAUNCH = '/logos/tampilo-launch-feed-1080.png'
 
-/** Bangun link WhatsApp dengan pesan ter-encode. */
+/**
+ * Bangun link WhatsApp dengan pesan ter-encode.
+ * Teks pesan datang dari i18n (kunci `wa.*`) supaya ikut bahasa aktif.
+ */
 export const waLink = (text: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
-
-/** Pesan default untuk CTA konsultasi. */
-export const WA_KONSULTASI = waLink(
-  'Halo Tampilo, saya mau konsultasi gratis untuk usaha saya'
-)
-
-export const waPaket = (paket: string) =>
-  waLink(`Halo Tampilo, saya tertarik paket ${paket}`)
-
-export const waTanya = () =>
-  waLink('Halo Tampilo, saya mau tanya layanan kalian')

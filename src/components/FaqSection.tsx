@@ -1,46 +1,26 @@
 import { useState } from 'react'
 import { ChevronDown, MessageCircle } from 'lucide-react'
-import { WA_KONSULTASI } from '../lib/site'
+import { useTranslation } from 'react-i18next'
+import { waLink } from '../lib/site'
 
-const faqs = [
-  {
-    q: 'Berapa lama waktu pengerjaan?',
-    a: 'Untuk Landing Page, biasanya 7–14 hari kerja tergantung paket dan kelengkapan konten dari kamu. Toko Online membutuhkan 10–21 hari kerja. Kami selalu komunikasikan progres secara rutin.',
-  },
-  {
-    q: 'Saya tidak punya konten / foto produk — apakah bisa tetap dibantu?',
-    a: 'Bisa! Kami menyediakan add-on copywriting untuk bantu tulis konten. Untuk foto, kami bisa pakai ilustrasi atau placeholder dulu — dan kamu bisa update nanti. Konsultasi gratis untuk tahu lebih lanjut.',
-  },
-  {
-    q: 'Setelah website jadi, saya bisa update sendiri?',
-    a: 'Untuk Toko Online paket Standard ke atas, ya — kamu mendapat panel admin untuk kelola produk sendiri. Untuk Landing Page, kami sediakan add-on update berkala atau paket maintenance bulanan.',
-  },
-  {
-    q: 'Apakah hasil website mobile-friendly?',
-    a: '100% — semua hasil kerja kami dioptimasi untuk tampil sempurna di HP. Karena sebagian besar pengunjung usaha UMKM datang dari HP.',
-  },
-  {
-    q: 'Bagaimana cara pembayaran?',
-    a: 'Pembayaran via transfer bank (BCA, Mandiri, BRI, BNI) atau dompet digital (GoPay, OVO, Dana). Kami minta DP 50% di awal, sisanya setelah website selesai dan kamu puas.',
-  },
-]
+type Faq = { q: string; a: string }
 
 export default function FaqSection() {
+  const { t } = useTranslation()
   const [open, setOpen] = useState<number | null>(null)
+  const faqs = t('faq.items', { returnObjects: true }) as Faq[]
 
   return (
     <section id="faq" className="py-24 sm:py-28 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12">
           <span className="inline-block px-3 py-1 rounded-full bg-[#4338CA]/10 text-[#4338CA] text-xs font-semibold tracking-wide uppercase">
-            FAQ
+            {t('faq.eyebrow')}
           </span>
           <h2 className="mt-5 text-3xl sm:text-4xl font-bold tracking-tight text-[#1E1B4B]">
-            Pertanyaan yang sering ditanya
+            {t('faq.title')}
           </h2>
-          <p className="mt-4 text-base text-slate-600">
-            Masih ada pertanyaan lain? Hubungi kami langsung via WhatsApp.
-          </p>
+          <p className="mt-4 text-base text-slate-600">{t('faq.subtitle')}</p>
         </div>
 
         <div className="space-y-3">
@@ -80,13 +60,13 @@ export default function FaqSection() {
         {/* Inline CTA */}
         <div className="mt-10 text-center">
           <a
-            href={WA_KONSULTASI}
+            href={waLink(t('wa.tanya'))}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-300 bg-white text-[#1E1B4B] text-sm font-semibold hover:border-[#4338CA] hover:text-[#4338CA] transition-colors duration-200 cursor-pointer"
           >
             <MessageCircle size={16} />
-            Tanya langsung via WhatsApp
+            {t('faq.askCta')}
           </a>
         </div>
       </div>

@@ -1,127 +1,49 @@
 import { useState } from 'react'
 import { Check, MessageCircle, Star } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import SectionHeading from './SectionHeading'
 import { useReveal } from '../hooks/useReveal'
-import { waPaket } from '../lib/site'
+import { waLink } from '../lib/site'
 
 type Tab = 'landing' | 'toko'
 
-const landingPricing = [
-  {
-    name: 'Basic',
-    price: 'Rp 350rb – 500rb',
-    popular: false,
-    desc: 'Mulai hadir online dengan cepat.',
-    features: [
-      '1 halaman (1–3 section)',
-      'Desain mobile-friendly',
-      'Tombol WhatsApp',
-      'Revisi 1x',
-    ],
-  },
-  {
-    name: 'Standard',
-    price: 'Rp 800rb – 1,5jt',
-    popular: true,
-    desc: 'Paling cocok untuk UMKM yang mau tampil profesional.',
-    features: [
-      '5–7 section lengkap',
-      'Copywriting ringan',
-      'Form / halaman order',
-      'Integrasi sosial media',
-      'Revisi 2x',
-    ],
-  },
-  {
-    name: 'Premium',
-    price: 'Rp 2jt – 3,5jt',
-    popular: false,
-    desc: 'Solusi lengkap dengan domain & hosting.',
-    features: [
-      'Desain custom penuh',
-      'Copywriting profesional',
-      'Domain .com + hosting 1 tahun',
-      'Animasi & interaksi',
-      'SEO dasar',
-      'Revisi unlimited',
-    ],
-  },
-]
+type Plan = {
+  name: string
+  price: string
+  desc: string
+  features: string[]
+}
 
-const tokoPricing = [
-  {
-    name: 'Toko Basic',
-    price: 'Rp 1jt – 2jt',
-    popular: false,
-    desc: 'Tampilkan produkmu secara rapi online.',
-    features: [
-      'Katalog produk dengan foto & harga',
-      'Tampilan mobile-friendly',
-      'Checkout via WhatsApp',
-      'Revisi 1x',
-    ],
-  },
-  {
-    name: 'Toko Standard',
-    price: 'Rp 2,5jt – 4,5jt',
-    popular: true,
-    desc: 'Toko online lengkap dengan keranjang & panel kelola.',
-    features: [
-      'Katalog + keranjang belanja',
-      'Panel kelola produk sendiri',
-      'Ongkos kirim sederhana',
-      'Checkout transfer / COD',
-      'Revisi 2x',
-    ],
-  },
-  {
-    name: 'Toko Premium',
-    price: 'Rp 5jt ke atas',
-    popular: false,
-    desc: 'Toko online penuh fitur dengan payment gateway.',
-    features: [
-      'Semua fitur Standard',
-      'Payment gateway (QRIS / transfer otomatis)',
-      'Domain + hosting',
-      'Laporan penjualan dasar',
-      'Revisi unlimited',
-    ],
-  },
-]
-
-const addOns = [
-  { label: 'Copywriting per halaman', price: 'Rp 150.000' },
-  { label: 'Setup domain + hosting / tahun', price: 'Rp 300.000' },
-  { label: 'Maintenance bulanan', price: 'Rp 100rb – 300rb/bln' },
-  { label: 'Tambah / update produk toko', price: 'Rp 50.000/batch' },
-  { label: 'Desain logo', price: 'Rp 250.000' },
-]
+type AddOn = { label: string; price: string }
 
 function PricingCard({
   plan,
+  popular,
   accentColor,
 }: {
-  plan: (typeof landingPricing)[0]
+  plan: Plan
+  popular: boolean
   accentColor: string
 }) {
+  const { t } = useTranslation()
   return (
     <div
       className={`relative rounded-3xl border flex flex-col transition-all duration-300 ${
-        plan.popular
+        popular
           ? 'border-[#4338CA]/30 shadow-xl shadow-[#4338CA]/10 bg-white lg:scale-[1.04] z-10'
           : 'border-slate-200 bg-white hover:shadow-lg hover:-translate-y-1'
       }`}
     >
-      {plan.popular && (
+      {popular && (
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
           <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#4338CA] text-white text-xs font-semibold shadow-md shadow-[#4338CA]/30">
             <Star size={11} fill="white" />
-            Paling Populer
+            {t('pricing.popular')}
           </div>
         </div>
       )}
 
-      <div className={`p-7 ${plan.popular ? 'bg-gradient-to-b from-[#4338CA]/5 to-transparent' : ''} rounded-t-3xl`}>
+      <div className={`p-7 ${popular ? 'bg-gradient-to-b from-[#4338CA]/5 to-transparent' : ''} rounded-t-3xl`}>
         <h3 className="text-lg font-bold text-[#1E1B4B] mb-1">{plan.name}</h3>
         <p className="text-sm text-slate-500 mb-4 leading-relaxed">{plan.desc}</p>
         <div className="text-[1.7rem] font-extrabold tracking-tight" style={{ color: accentColor }}>
@@ -146,22 +68,22 @@ function PricingCard({
         </ul>
 
         <a
-          href={waPaket(plan.name)}
+          href={waLink(t('wa.paket', { paket: plan.name }))}
           target="_blank"
           rel="noopener noreferrer"
           className={`mt-7 inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
-            plan.popular
+            popular
               ? 'text-white hover:opacity-90 shadow-md'
               : 'border border-slate-200 text-[#1E1B4B] hover:border-current'
           }`}
           style={
-            plan.popular
+            popular
               ? { backgroundColor: accentColor, boxShadow: `0 8px 20px -8px ${accentColor}80` }
               : { color: accentColor }
           }
         >
           <MessageCircle size={16} />
-          Pesan via WhatsApp
+          {t('common.orderWhatsapp')}
         </a>
       </div>
     </div>
@@ -169,19 +91,23 @@ function PricingCard({
 }
 
 export default function PricingSection() {
+  const { t } = useTranslation()
   const [tab, setTab] = useState<Tab>('landing')
   const { ref, visible } = useReveal<HTMLDivElement>()
 
-  const plans = tab === 'landing' ? landingPricing : tokoPricing
+  const plans = t(tab === 'landing' ? 'pricing.landing' : 'pricing.store', {
+    returnObjects: true,
+  }) as Plan[]
+  const addOns = t('pricing.addOns', { returnObjects: true }) as AddOn[]
   const accentColor = tab === 'landing' ? '#4338CA' : '#06B6D4'
 
   return (
     <section id="harga" className="py-24 sm:py-28 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Harga jujur & transparan"
-          title="Mulai dari ratusan ribu saja"
-          subtitle="Nggak harus mahal buat tampil profesional. Pilih paket yang pas sama kebutuhan usahamu."
+          eyebrow={t('pricing.eyebrow')}
+          title={t('pricing.title')}
+          subtitle={t('pricing.subtitle')}
         />
 
         {/* Tab selector */}
@@ -195,7 +121,7 @@ export default function PricingSection() {
                   : 'text-slate-500 hover:text-[#4338CA]'
               }`}
             >
-              Landing Page
+              {t('pricing.tabLanding')}
             </button>
             <button
               onClick={() => setTab('toko')}
@@ -205,22 +131,22 @@ export default function PricingSection() {
                   : 'text-slate-500 hover:text-[#0891B2]'
               }`}
             >
-              Toko Online
+              {t('pricing.tabStore')}
             </button>
           </div>
         </div>
 
         {/* Cards */}
         <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''} grid sm:grid-cols-3 gap-6 items-center`}>
-          {plans.map((plan) => (
-            <PricingCard key={plan.name} plan={plan} accentColor={accentColor} />
+          {plans.map((plan, i) => (
+            <PricingCard key={plan.name} plan={plan} popular={i === 1} accentColor={accentColor} />
           ))}
         </div>
 
         {/* Add-ons */}
         <div className="mt-16">
           <h3 className="text-lg font-bold text-[#1E1B4B] text-center mb-6">
-            Add-On — Layanan Tambahan
+            {t('pricing.addOnsTitle')}
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
             {addOns.map(({ label, price }) => (
@@ -235,9 +161,7 @@ export default function PricingSection() {
           </div>
         </div>
 
-        <p className="text-center text-sm text-slate-400 mt-8">
-          * Harga dapat berubah sewaktu-waktu. Konsultasi gratis dulu untuk penawaran terbaik.
-        </p>
+        <p className="text-center text-sm text-slate-400 mt-8">{t('pricing.note')}</p>
       </div>
     </section>
   )
