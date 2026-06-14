@@ -2,7 +2,10 @@
 
 export const BRAND_NAME = 'Tampilo'
 export const TAGLINE = 'Tampilo — Tampil Online.'
-export const WHATSAPP_NUMBER = '6281234567890' // placeholder — ganti nomor asli nanti
+// Nomor WhatsApp dari env (Vercel/.env), dengan fallback ke nomor asli.
+// WHATSAPP_NUMBER: digit saja untuk link wa.me. WHATSAPP_DISPLAY: format rapi untuk tampilan.
+export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER ?? '6287887396493'
+export const WHATSAPP_DISPLAY = import.meta.env.VITE_WHATSAPP_DISPLAY ?? '+62 878-8739-6493'
 export const IG_HANDLE = 'tampilo_tampil_release'
 export const IG_URL = 'https://www.instagram.com/tampilo_tampil_release/'
 export const TIKTOK_URL = `https://www.tiktok.com/@${IG_HANDLE}`
