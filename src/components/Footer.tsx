@@ -93,6 +93,15 @@ export default function Footer() {
                 <InstagramIcon size={17} className="text-pink-400 flex-shrink-0" />
                 @{IG_HANDLE}
               </a>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-sm text-white/65 hover:text-white transition-colors duration-200 cursor-pointer"
+              >
+                <Music2 size={17} className="text-white/80 flex-shrink-0" />
+                @{IG_HANDLE}
+              </a>
             </div>
           </div>
         </div>
