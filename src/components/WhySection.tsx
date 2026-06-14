@@ -18,7 +18,7 @@ export default function WhySection() {
   const reasons = t('why.items', { returnObjects: true }) as Reason[]
 
   return (
-    <section className="py-24 sm:py-28 bg-white">
+    <section className="py-16 sm:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tone="cyan"

@@ -102,7 +102,7 @@ export default function PricingSection() {
   const accentColor = tab === 'landing' ? '#4338CA' : '#06B6D4'
 
   return (
-    <section id="harga" className="py-24 sm:py-28 bg-[#F8FAFC]">
+    <section id="harga" className="py-16 sm:py-28 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={t('pricing.eyebrow')}

@@ -11,7 +11,7 @@ export default function FaqSection() {
   const faqs = t('faq.items', { returnObjects: true }) as Faq[]
 
   return (
-    <section id="faq" className="py-24 sm:py-28 bg-white">
+    <section id="faq" className="py-16 sm:py-28 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12">
           <span className="inline-block px-3 py-1 rounded-full bg-[#4338CA]/10 text-[#4338CA] text-xs font-semibold tracking-wide uppercase">

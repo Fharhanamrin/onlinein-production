@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { InstagramIcon } from './BrandIcons'
 import {
   BRAND_NAME,
-  LOGO_ICON,
+  LOGO_MAIN,
   WHATSAPP_DISPLAY,
   IG_URL,
   IG_HANDLE,
@@ -28,9 +28,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10 pb-10 border-b border-white/10">
           <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2.5 mb-5">
-              <img src={LOGO_ICON} alt="" className="h-8 w-8 object-contain brightness-0 invert" />
-              <span className="text-lg font-bold">{BRAND_NAME}</span>
+            <div className="mb-5">
+              <img src={LOGO_MAIN} alt={BRAND_NAME} className="h-8 w-auto brightness-0 invert" />
             </div>
             <p className="text-sm text-white/65 leading-relaxed max-w-xs">{t('footer.tagline')}</p>
             <div className="flex items-center gap-3 mt-5">

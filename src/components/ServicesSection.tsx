@@ -22,7 +22,7 @@ export default function ServicesSection() {
   const services = t('services.items', { returnObjects: true }) as Service[]
 
   return (
-    <section id="layanan" className="py-24 sm:py-28 bg-white">
+    <section id="layanan" className="py-16 sm:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={t('services.eyebrow')}

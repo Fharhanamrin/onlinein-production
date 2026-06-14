@@ -20,7 +20,7 @@ export default function ShowcaseSection() {
   const captions = t('showcase.posts', { returnObjects: true }) as string[]
 
   return (
-    <section id="karya" className="py-24 sm:py-28 bg-[#F8FAFC]">
+    <section id="karya" className="py-16 sm:py-28 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <SectionHeading

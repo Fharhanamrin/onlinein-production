@@ -13,7 +13,7 @@ export default function ProblemSection() {
   const problems = t('problem.items', { returnObjects: true }) as Problem[]
 
   return (
-    <section className="py-24 sm:py-28 bg-gradient-to-b from-white to-[#F8FAFC]">
+    <section className="py-16 sm:py-28 bg-gradient-to-b from-white to-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tone="rose"

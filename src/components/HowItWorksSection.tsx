@@ -14,7 +14,7 @@ export default function HowItWorksSection() {
   const steps = t('how.steps', { returnObjects: true }) as Step[]
 
   return (
-    <section id="cara-kerja" className="py-24 sm:py-28 bg-[#F8FAFC]">
+    <section id="cara-kerja" className="py-16 sm:py-28 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={t('how.eyebrow')}

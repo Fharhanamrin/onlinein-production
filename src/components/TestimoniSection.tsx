@@ -30,7 +30,7 @@ export default function TestimoniSection() {
   const stats = t('testimonials.stats', { returnObjects: true }) as TrustStat[]
 
   return (
-    <section className="py-24 sm:py-28 bg-white">
+    <section className="py-16 sm:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tone="amber"

@@ -30,7 +30,7 @@ export default function SectionHeading({
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? 'is-visible' : ''} flex flex-col ${alignCls} max-w-2xl mb-14`}
+      className={`reveal ${visible ? 'is-visible' : ''} flex flex-col ${alignCls} max-w-2xl mb-10 sm:mb-14`}
     >
       <span
         className={`inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase ${toneMap[tone]}`}

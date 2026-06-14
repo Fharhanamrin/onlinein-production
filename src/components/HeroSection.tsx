@@ -76,14 +76,14 @@ export default function HeroSection() {
               href={waLink(t('wa.konsultasi'))}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#4338CA] text-white font-semibold text-base hover:bg-[#3730A3] transition-all duration-200 shadow-lg shadow-[#4338CA]/25 hover:shadow-xl hover:shadow-[#4338CA]/30 hover:-translate-y-0.5 cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:px-7 sm:py-4 sm:text-base rounded-full bg-[#4338CA] text-white font-semibold hover:bg-[#3730A3] transition-all duration-200 shadow-lg shadow-[#4338CA]/25 hover:shadow-xl hover:shadow-[#4338CA]/30 hover:-translate-y-0.5 cursor-pointer"
             >
               <MessageCircle size={20} />
               {t('common.consultFree')}
             </a>
             <a
               href="#harga"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-slate-300 bg-white text-[#1E1B4B] font-semibold text-base hover:border-[#4338CA] hover:text-[#4338CA] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:px-7 sm:py-4 sm:text-base rounded-full border border-slate-300 bg-white text-[#1E1B4B] font-semibold hover:border-[#4338CA] hover:text-[#4338CA] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
             >
               {t('common.seePricing')}
               <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />

@@ -7,7 +7,7 @@ export default function CtaSection() {
   const trustPoints = t('cta.trustPoints', { returnObjects: true }) as string[]
 
   return (
-    <section className="py-24 sm:py-28 bg-white">
+    <section className="py-16 sm:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="rounded-[2rem] overflow-hidden relative"
@@ -26,11 +26,11 @@ export default function CtaSection() {
             />
           </div>
 
-          <div className="relative px-8 py-16 sm:px-14 sm:py-20 text-center">
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-5">
+          <div className="relative px-6 py-12 sm:px-14 sm:py-20 text-center">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 sm:mb-5">
               {t('cta.title')}
             </h2>
-            <p className="text-white/80 text-lg max-w-xl mx-auto mb-9 leading-relaxed">
+            <p className="text-white/80 text-base sm:text-lg max-w-xl mx-auto mb-7 sm:mb-9 leading-relaxed">
               {t('cta.subtitle')}
             </p>
 
@@ -39,21 +39,21 @@ export default function CtaSection() {
                 href={waLink(t('wa.konsultasi'))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-[#4338CA] font-bold text-base hover:bg-slate-50 transition-all duration-200 shadow-xl hover:-translate-y-0.5 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-base rounded-full bg-white text-[#4338CA] font-bold hover:bg-slate-50 transition-all duration-200 shadow-xl hover:-translate-y-0.5 cursor-pointer"
               >
                 <MessageCircle size={20} />
                 {t('common.consultFreeWa')}
               </a>
               <a
                 href="#harga"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/40 text-white font-semibold text-base hover:bg-white/10 transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-base rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition-all duration-200 cursor-pointer"
               >
                 {t('common.seePricing')}
                 <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
               </a>
             </div>
 
-            <div className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm text-white/75">
+            <div className="mt-7 sm:mt-9 flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm text-white/75">
               {trustPoints.map((p) => (
                 <span key={p} className="inline-flex items-center gap-1.5">
                   <CheckCircle2 size={16} className="text-[#06B6D4]" />

@@ -45,7 +45,7 @@ export default function PortfolioSection() {
   const projects = t('portfolio.items', { returnObjects: true }) as Project[]
 
   return (
-    <section id="portfolio" className="py-24 sm:py-28 bg-white">
+    <section id="portfolio" className="py-16 sm:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={t('portfolio.eyebrow')}

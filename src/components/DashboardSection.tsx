@@ -47,7 +47,7 @@ export default function DashboardSection() {
   const features = t('dashboard.features', { returnObjects: true }) as string[]
 
   return (
-    <section id="dashboard" className="py-24 sm:py-28 bg-gradient-to-b from-white to-[#F8FAFC]">
+    <section id="dashboard" className="py-16 sm:py-28 bg-gradient-to-b from-white to-[#F8FAFC]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={ref}
